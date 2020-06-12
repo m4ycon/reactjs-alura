@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 
 import Table from './components/Table';
+import Form from './components/Form';
 
 class App extends Component {
   state = {
@@ -39,12 +40,23 @@ class App extends Component {
 
   }
 
+  addAuthor = author => {
+    this.setState({
+      authors: [
+        ...this.state.authors, author
+      ]
+    });
+  }
+
   render() {
     return (
-      <div className="App">
-        <Table authors={this.state.authors} removeAuthor={this.removeAuthor} />
-
-      </div>
+      <>
+        <Table
+          authors={this.state.authors}
+          removeAuthor={this.removeAuthor}
+        />
+        <Form addAuthor={this.addAuthor} />
+      </>
     );
   }
 }
