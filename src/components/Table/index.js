@@ -28,7 +28,12 @@ class TableBody extends Component {
             <td>{author.name}</td>
             <td>{author.book}</td>
             <td>{author.price}</td>
-            <td><button onClick={() => removeAuthor(index)}>Remover</button></td>
+            <td>
+              <button
+                onClick={() => removeAuthor(index)}
+                className="waves-effect waves-light indigo lighten-2 btn"
+              >Remover</button>
+            </td>
           </tr>
         ))}
       </tbody>
@@ -43,7 +48,7 @@ class Table extends Component {
     const { authors, removeAuthor } = this.props;
 
     return (
-      <table>
+      <table className="highlight centered">
         <TableHead />
         <TableBody authors={authors} removeAuthor={removeAuthor} />
       </table>

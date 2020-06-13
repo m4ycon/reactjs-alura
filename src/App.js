@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import './App.css';
+import 'materialize-css/dist/css/materialize.min.css';
 
 import Table from './components/Table';
 import Form from './components/Form';
+import Header from './components/Header';
 
 class App extends Component {
   state = {
@@ -51,11 +52,14 @@ class App extends Component {
   render() {
     return (
       <>
-        <Table
-          authors={this.state.authors}
-          removeAuthor={this.removeAuthor}
-        />
-        <Form addAuthor={this.addAuthor} />
+        <Header />
+        <div className="container">
+          <Table
+            authors={this.state.authors}
+            removeAuthor={this.removeAuthor}
+          />
+          <Form addAuthor={this.addAuthor} />
+        </div>
       </>
     );
   }

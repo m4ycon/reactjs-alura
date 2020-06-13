@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-document.getElementsByTagName('p')
 
 class Formulario extends Component {
 
@@ -34,35 +33,49 @@ class Formulario extends Component {
 
     return (
       <form>
+        <div className="row">
 
-        <label htmlFor="name">Nome</label>
-        <input
-          id="name"
-          type="text"
-          name="name"
-          value={name}
-          onChange={this.handleInput}
-        />
+          <div className="input-field col s4">
+            <input
+              id="name"
+              type="text"
+              name="name"
+              placeholder="Nome"
+              value={name}
+              onChange={this.handleInput}
+            />
+          </div>
 
-        <label htmlFor="book">Livro</label>
-        <input
-          id="book"
-          type="text"
-          name="book"
-          value={book}
-          onChange={this.handleInput}
-        />
+          <div className="input-field col s4">
+            <input
+              id="book"
+              type="text"
+              name="book"
+              placeholder="Livro"
+              value={book}
+              onChange={this.handleInput}
+            />
+          </div>
 
-        <label htmlFor="price">Preço</label>
-        <input
-          id="price"
-          type="text"
-          name="price"
-          value={price}
-          onChange={this.handleInput}
-        />
+          <div className="input-field col s4">
+            <input
+              id="price"
+              type="text"
+              name="price"
+              placeholder="Preço"
+              value={price}
+              onChange={this.handleInput}
+            />
+          </div>
 
-        <button type="button" onClick={this.handleSubmit}>Salvar</button>
+          <button
+            type="button"
+            onClick={this.handleSubmit}
+            className="waves-effect waves-light indigo lighten-2 btn"
+          >
+            Salvar
+          </button>
+        </div>
       </form>
     );
   }
