@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import FormValidator from '../../Validation/FormValidator';
+import PopUp from '../PopUp';
 
 class Formulario extends Component {
 
@@ -21,7 +22,7 @@ class Formulario extends Component {
       method: 'isInt',
       args: [{ min: 0, max: 99999 }],
       validWhen: true,
-      message: 'Insira um valor.'
+      message: 'Insira um valor numérico.'
     }]);
 
     this.initialState = {
@@ -52,8 +53,8 @@ class Formulario extends Component {
     } else {
       const { name, book, price } = validation;
       const fields = [name, book, price];
-      const invalidFields = fields.filter(e => e.isInvalid);
-      invalidFields.forEach(console.log);
+      const invalidFields = fields.filter(elem => elem.isInvalid);
+      invalidFields.forEach(field => PopUp.showMessage('erro', field.message));
 
     }
   }

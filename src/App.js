@@ -4,6 +4,7 @@ import 'materialize-css/dist/css/materialize.min.css';
 import Table from './components/Table';
 import Form from './components/Form';
 import Header from './components/Header';
+import PopUp from './components/PopUp';
 
 class App extends Component {
   state = {
@@ -35,18 +36,14 @@ class App extends Component {
 
     const { authors } = this.state;
 
-    this.setState({
-      authors: authors.filter((author, index) => id !== index),
-    });
+    this.setState({ authors: authors.filter((author, index) => id !== index) });
+    PopUp.showMessage('error', 'Autor removido com sucesso!')
 
   }
 
   addAuthor = author => {
-    this.setState({
-      authors: [
-        ...this.state.authors, author
-      ]
-    });
+    this.setState({ authors: [...this.state.authors, author] });
+    PopUp.showMessage('success', 'Adicionado com sucesso!');
   }
 
   render() {
