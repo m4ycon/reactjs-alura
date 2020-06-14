@@ -1,35 +1,14 @@
 import React, { Component } from 'react';
 
-import Table from '../../components/Table';
 import Form from '../../components/Form';
 import Header from '../../components/Header';
 import PopUp from '../../components/PopUp';
 
+import AuthorsTable from '../../components/DataTable';
+import simpleDB from '../../database/simpleDB';
+
 class Home extends Component {
-  state = {
-    authors: [
-      {
-        name: 'Paulo',
-        book: 'React',
-        price: '1000'
-      },
-      {
-        name: 'Daniel',
-        book: 'Java',
-        price: '99'
-      },
-      {
-        name: 'Marcos',
-        book: 'Design',
-        price: '150'
-      },
-      {
-        name: 'Bruno',
-        book: 'DevOps',
-        price: '100'
-      }
-    ]
-  };
+  state = simpleDB;
 
   removeAuthor = id => {
 
@@ -51,9 +30,10 @@ class Home extends Component {
         <Header />
         <div className="container">
           <h1>Casa do Código</h1>
-          <Table
+          <AuthorsTable
             authors={this.state.authors}
             removeAuthor={this.removeAuthor}
+            columns={['Autor', 'Livro', 'Preço', 'Remover']}
           />
           <Form addAuthor={this.addAuthor} />
         </div>
