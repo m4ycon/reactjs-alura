@@ -3,11 +3,25 @@ import React, { Component } from 'react';
 import Header from '../../components/Header';
 
 import AuthorsTable from '../../components/AuthorsTable';
-import simpleDB from '../../database/simpleDB';
+import api from '../../services/api';
 
 class Books extends Component {
+  constructor(props) {
+    super(props);
 
-  state = simpleDB;
+    this.state = {
+      authors: []
+    };
+  }
+
+  componentDidMount() {
+    api.ListBooks()
+      .then(res => res.data)
+      .then(authors => this.setState({
+        authors: [...this.state.authors, ...authors]
+      }));
+
+  }
 
   render() {
     return (

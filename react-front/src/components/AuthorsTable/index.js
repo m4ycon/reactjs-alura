@@ -23,15 +23,15 @@ class TableBody extends Component {
 
     return (
       <tbody>
-        {authors.map((author, index) => (
-          <tr key={index}>
-            {columns.includes('Autor') && <td>{author.name}</td>}
-            {columns.includes('Livro') && <td>{author.book}</td>}
-            {columns.includes('Preço') && <td>{author.price}</td>}
+        {authors.map((author) => (
+          <tr key={author.id}>
+            {columns.includes('Autor') && <td>{author.nome}</td>}
+            {columns.includes('Livro') && <td>{author.livro}</td>}
+            {columns.includes('Preço') && <td>{author.preco}</td>}
             {columns.includes('Remover')
               && <td>
                 <button
-                  onClick={() => removeAuthor(index)}
+                  onClick={() => removeAuthor(author.id)}
                   className="waves-effect waves-light indigo lighten-2 btn"
                 >Remover</button>
               </td>

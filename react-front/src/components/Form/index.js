@@ -8,17 +8,17 @@ class Formulario extends Component {
     super(props);
 
     this.FormValidator = new FormValidator([{
-      field: 'name',
+      field: 'nome',
       method: 'isEmpty',
       validWhen: false,
       message: 'Insira um nome.'
     }, {
-      field: 'book',
+      field: 'livro',
       method: 'isEmpty',
       validWhen: false,
       message: 'Insira um livro.'
     }, {
-      field: 'price',
+      field: 'preco',
       method: 'isInt',
       args: [{ min: 0, max: 99999 }],
       validWhen: true,
@@ -26,9 +26,9 @@ class Formulario extends Component {
     }]);
 
     this.initialState = {
-      name: '',
-      book: '',
-      price: '',
+      nome: '',
+      livro: '',
+      preco: '',
       validation: this.FormValidator.valid()
     }
     this.state = this.initialState;
@@ -62,7 +62,7 @@ class Formulario extends Component {
 
   render() {
 
-    const { name, book, price } = this.state;
+    const { nome, livro, preco } = this.state;
 
     return (
       <form>
@@ -72,9 +72,9 @@ class Formulario extends Component {
             <input
               id="name"
               type="text"
-              name="name"
+              name="nome"
               placeholder="Nome"
-              value={name}
+              value={nome}
               onChange={this.handleInput}
             />
           </div>
@@ -83,9 +83,9 @@ class Formulario extends Component {
             <input
               id="book"
               type="text"
-              name="book"
+              name="livro"
               placeholder="Livro"
-              value={book}
+              value={livro}
               onChange={this.handleInput}
             />
           </div>
@@ -94,9 +94,9 @@ class Formulario extends Component {
             <input
               id="price"
               type="text"
-              name="price"
+              name="preco"
               placeholder="Preço"
-              value={price}
+              value={preco}
               onChange={this.handleInput}
             />
           </div>
