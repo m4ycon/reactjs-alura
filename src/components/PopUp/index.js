@@ -1,10 +1,9 @@
-import M from 'materialize-css';
+import { toast } from 'materialize-css';
 
 const PopUp = {
   showMessage: (status, msg) => {
     const color = status === 'success' ? 'green' : 'red';
-    M.toast({ html: msg, classes: color, displayLength: 2000 });
-
+    toast({ html: msg, classes: color, displayLength: 2000 });
   }
 }
 

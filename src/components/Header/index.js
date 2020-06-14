@@ -1,18 +1,18 @@
 import React, { Component } from 'react';
+import LinkWrapper from '../../wrappers/LinkWrapper';
 
 class Header extends Component {
-
 
   render() {
 
     return (
       <nav>
         <div className="nav-wrapper indigo lighten-2">
-          <a href="/" className="brand-logo">Casa do código</a>
+          <LinkWrapper to="/" className="brand-logo" activeStyle={{}}>Casa do código</LinkWrapper>
           <ul className="right">
-            <li><a href="/authors">Autores</a></li>
-            <li><a href="/books">Livros</a></li>
-            <li><a href="/about">Sobre</a></li>
+            <li><LinkWrapper to="/authors">Autores</LinkWrapper></li>
+            <li><LinkWrapper to="/books">Livros</LinkWrapper></li>
+            <li><LinkWrapper to="/about">Sobre</LinkWrapper></li>
           </ul>
         </div>
       </nav>
