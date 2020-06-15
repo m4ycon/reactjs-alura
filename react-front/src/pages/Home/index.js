@@ -75,12 +75,12 @@ class Home extends Component {
         <Header />
         <div className="container">
           <h1>Casa do Código</h1>
+          <Form addAuthor={this.addAuthor} />
           <Table
             titles={titles}
             data={data}
             cellDelete={this.removeAuthor}
           />
-          <Form addAuthor={this.addAuthor} />
         </div>
       </>
     );

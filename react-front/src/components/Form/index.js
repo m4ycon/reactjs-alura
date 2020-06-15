@@ -1,4 +1,8 @@
 import React, { Component } from 'react';
+import TextField from '@material-ui/core/TextField';
+import Grid from '@material-ui/core/Grid';
+import Button from '@material-ui/core/Button';
+
 import FormValidator from '../../utils/FormValidator';
 import PopUp from '../PopUp';
 
@@ -66,49 +70,51 @@ class Formulario extends Component {
 
     return (
       <form>
-        <div className="row">
+        <Grid container spacing={2} alignItems="center">
 
-          <div className="input-field col s4">
-            <input
+          <Grid item>
+            <TextField
               id="name"
-              type="text"
               name="nome"
-              placeholder="Nome"
+              label="Nome"
+              variant="outlined"
               value={nome}
               onChange={this.handleInput}
             />
-          </div>
+          </Grid>
 
-          <div className="input-field col s4">
-            <input
+          <Grid item>
+            <TextField
               id="book"
-              type="text"
               name="livro"
-              placeholder="Livro"
+              label="Livro"
+              variant="outlined"
               value={livro}
               onChange={this.handleInput}
             />
-          </div>
+          </Grid>
 
-          <div className="input-field col s4">
-            <input
+          <Grid item>
+            <TextField
               id="price"
-              type="text"
               name="preco"
-              placeholder="Preço"
+              label="Preço"
+              variant="outlined"
               value={preco}
               onChange={this.handleInput}
             />
-          </div>
+          </Grid>
 
-          <button
-            type="button"
-            onClick={this.handleSubmit}
-            className="waves-effect waves-light indigo lighten-2 btn"
-          >
-            Salvar
-          </button>
-        </div>
+          <Grid item>
+            <Button
+              variant="contained"
+              color="primary"
+              type="button"
+              onClick={this.handleSubmit}
+            >Salvar</Button>
+          </Grid>
+
+        </Grid>
       </form>
     );
   }
