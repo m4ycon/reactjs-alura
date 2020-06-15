@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import LinkWrapper from '../../wrappers/LinkWrapper';
+import LinkWrapper from '../../utils/LinkWrapper';
 
 class Header extends Component {
 

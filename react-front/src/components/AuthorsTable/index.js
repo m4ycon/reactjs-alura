@@ -1,61 +1,47 @@
 import React, { Component } from 'react';
 
-class TableHead extends Component {
-  render() {
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableRow from '@material-ui/core/TableRow';
+import TableHead from '@material-ui/core/TableHead';
+import Button from '@material-ui/core/Button';
 
-    const { columns } = this.props;
-
-    return (
-      <thead>
-        <tr>
-          {columns.map(column => <th key={column}>{column}</th>)}
-        </tr>
-      </thead>
-    );
-  }
-}
-
-class TableBody extends Component {
+class MainTable extends Component {
 
   render() {
 
-    const { authors, removeAuthor, columns } = this.props;
+    const { authors, removeAuthor } = this.props;
 
     return (
-      <tbody>
-        {authors.map((author) => (
-          <tr key={author.id}>
-            {columns.includes('Autor') && <td>{author.nome}</td>}
-            {columns.includes('Livro') && <td>{author.livro}</td>}
-            {columns.includes('Preço') && <td>{author.preco}</td>}
-            {columns.includes('Remover')
-              && <td>
-                <button
+      <Table>
+        <TableHead>
+          <TableRow>
+            <TableCell>Autor</TableCell>
+            <TableCell>Livro</TableCell>
+            <TableCell>Preço</TableCell>
+            <TableCell>Remover</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {authors.map(author =>
+            <TableRow key={author.id}>
+              <TableCell>{author.nome}</TableCell>
+              <TableCell>{author.livro}</TableCell>
+              <TableCell>{author.preco}</TableCell>
+              <TableCell>
+                <Button
+                  variant="contained"
+                  color="primary"
                   onClick={() => removeAuthor(author.id)}
-                  className="waves-effect waves-light indigo lighten-2 btn"
-                >Remover</button>
-              </td>
-            }
-          </tr>
-        ))}
-      </tbody>
+                >Remover</Button>
+              </TableCell>
+            </TableRow>
+          )}
+        </TableBody>
+      </Table>
     );
   }
 }
 
-class Table extends Component {
-
-  render() {
-
-    const { authors, removeAuthor, columns } = this.props;
-
-    return (
-      <table className="highlight centered">
-        <TableHead columns={columns} />
-        <TableBody columns={columns} authors={authors} removeAuthor={removeAuthor} />
-      </table>
-    );
-  }
-}
-
-export default Table;
+export default MainTable;
