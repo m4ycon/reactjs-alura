@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import Header from '../../components/Header';
 
-import AuthorsTable from '../../components/AuthorsTable';
+import Table from '../../components/Table';
 import api from '../../services/api';
 import PopUp from '../../components/PopUp';
 
@@ -30,14 +30,19 @@ class Books extends Component {
   }
 
   render() {
+
+    const titles = [
+      { title: 'Livros', key: 'livro' }
+    ];
+
     return (
       <>
         <Header />
         <div className="container">
           <h1>Livros</h1>
-          <AuthorsTable
-            authors={this.state.books}
-            columns={['Livro']}
+          <Table
+            titles={titles}
+            data={this.state.books}
           />
         </div>
       </>

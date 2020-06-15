@@ -4,7 +4,7 @@ import Form from '../../components/Form';
 import Header from '../../components/Header';
 import PopUp from '../../components/PopUp';
 
-import AuthorsTable from '../../components/AuthorsTable';
+import Table from '../../components/Table';
 import api from '../../services/api';
 
 class Home extends Component {
@@ -62,16 +62,23 @@ class Home extends Component {
   }
 
   render() {
+    const titles = [
+      { title: 'Autores', key: 'nome' },
+      { title: 'Livros', key: 'livro' },
+      { title: 'Preços', key: 'preco' }
+    ];
+
+    const data = this.state.authors;
 
     return (
       <>
         <Header />
         <div className="container">
           <h1>Casa do Código</h1>
-          <AuthorsTable
-            authors={this.state.authors}
-            removeAuthor={this.removeAuthor}
-            columns={['Autor', 'Livro', 'Preço', 'Remover']}
+          <Table
+            titles={titles}
+            data={data}
+            cellDelete={this.removeAuthor}
           />
           <Form addAuthor={this.addAuthor} />
         </div>
