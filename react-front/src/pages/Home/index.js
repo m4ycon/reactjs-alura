@@ -17,8 +17,14 @@ class Home extends Component {
 
   componentDidMount() {
     api.ListAuthors()
-      .then(res =>
-        this.setState({ authors: [...this.state.authors, ...res.data] })
+      .then(res => api.HandleErrors(res))
+      .then(res => {
+        if (res.message === 'success') {
+          this.setState({ authors: [...this.state.authors, ...res.data] })
+        }
+      })
+      .catch(err =>
+        PopUp.showMessage('error', 'Erro na comunicação da API ao tentar listar os autores')
       );
   }
 
@@ -26,23 +32,35 @@ class Home extends Component {
 
     const { authors } = this.state;
 
-    await api.RemoveAuthor(id);
+    const updatedAuthors = authors.filter(author => author.id !== id);
 
-    this.setState({ authors: authors.filter((author) => id !== author.id) });
-
-    PopUp.showMessage('error', 'Autor removido com sucesso!');
-
+    await api.RemoveAuthor(id)
+      .then(res => api.HandleErrors(res))
+      .then(res => {
+        if (res.message === 'deleted') {
+          this.setState({ authors: [...updatedAuthors] });
+          PopUp.showMessage('error', 'Autor removido com sucesso!');
+        }
+      })
+      .catch(err =>
+        PopUp.showMessage('error', 'Erro na comunicação da API ao tentar remover o autor')
+      );
 
   }
 
   addAuthor = author => {
 
     api.CreateAuthor(JSON.stringify(author))
-      .then(res => res.data)
-      .then(author => {
-        this.setState({ authors: [...this.state.authors, author] });
-        PopUp.showMessage('success', 'Adicionado com sucesso!');
-      });
+      .then(res => api.HandleErrors(res))
+      .then(res => {
+        if (res.message === 'success') {
+          this.setState({ authors: [...this.state.authors, res.data] });
+          PopUp.showMessage('success', 'Adicionado com sucesso!');
+        }
+      })
+      .catch(err =>
+        PopUp.showMessage('error', 'Erro na comunicação da API ao tentar adicionar o autor')
+      );
 
   }
 
