@@ -7,13 +7,8 @@ import TableRow from '@material-ui/core/TableRow';
 import TableHead from '@material-ui/core/TableHead';
 import Button from '@material-ui/core/Button';
 
-const DeleteCell = ({ removeData, id, title }) => {
-  if (!removeData) {
-    return null;
-  };
-  if (title) {
-    return <TableCell>Remover</TableCell>;
-  };
+const DeleteCell = ({ removeData, id }) => {
+  if (!removeData) { return null };
   return (
     <TableCell>
       <Button
@@ -23,6 +18,11 @@ const DeleteCell = ({ removeData, id, title }) => {
       >Remover</Button>
     </TableCell>
   );
+}
+
+const DeleteTitle = ({ removeData }) => {
+  if (!removeData) { return null };
+  return <TableCell>Remover</TableCell>;
 }
 
 const MainTable = props => {
@@ -38,7 +38,7 @@ const MainTable = props => {
               {title.title}
             </TableCell>
           )}
-          <DeleteCell removeData={cellDelete} title />
+          <DeleteTitle removeData={cellDelete} />
         </TableRow>
       </TableHead>
       <TableBody>
