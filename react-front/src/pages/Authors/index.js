@@ -17,7 +17,6 @@ class Authors extends Component {
 
   componentDidMount() {
     api.ListNames()
-      .then(res => api.HandleErrors(res))
       .then(res => {
         if (res.message === 'success') {
           PopUp.showMessage('success', 'Autores listados com sucesso');

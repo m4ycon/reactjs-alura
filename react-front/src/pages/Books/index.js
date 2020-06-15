@@ -17,7 +17,6 @@ class Books extends Component {
 
   componentDidMount() {
     api.ListBooks()
-      .then(res => api.HandleErrors(res))
       .then(res => {
         if (res.message === 'success') {
           PopUp.showMessage('success', 'Livros listados com sucesso');

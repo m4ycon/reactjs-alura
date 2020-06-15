@@ -17,7 +17,6 @@ class Home extends Component {
 
   componentDidMount() {
     api.ListAuthors()
-      .then(res => api.HandleErrors(res))
       .then(res => {
         if (res.message === 'success') {
           this.setState({ authors: [...this.state.authors, ...res.data] })
@@ -35,7 +34,6 @@ class Home extends Component {
     const updatedAuthors = authors.filter(author => author.id !== id);
 
     await api.RemoveAuthor(id)
-      .then(res => api.HandleErrors(res))
       .then(res => {
         if (res.message === 'deleted') {
           this.setState({ authors: [...updatedAuthors] });
@@ -51,7 +49,6 @@ class Home extends Component {
   addAuthor = author => {
 
     api.CreateAuthor(JSON.stringify(author))
-      .then(res => api.HandleErrors(res))
       .then(res => {
         if (res.message === 'success') {
           this.setState({ authors: [...this.state.authors, res.data] });
