@@ -4,14 +4,20 @@ import Header from '../../components/Header';
 
 import Table from '../../components/Table';
 import api from '../../services/api';
-import PopUp from '../../components/PopUp';
+import Toast from '../../components/Toast';
+
 
 class Books extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      books: []
+      books: [],
+      message: {
+        open: false,
+        text: '',
+        severity: 'success'
+      }
     };
   }
 
@@ -19,12 +25,24 @@ class Books extends Component {
     api.ListBooks()
       .then(res => {
         if (res.message === 'success') {
-          PopUp.showMessage('success', 'Livros listados com sucesso');
           this.setState({ books: [...this.state.books, ...res.data] });
+          this.setState({
+            message: {
+              open: true,
+              text: 'Livros listados com sucesso',
+              severity: 'success'
+            }
+          });
         }
       })
       .catch(err =>
-        PopUp.showMessage('error', 'Erro na comunicação da API ao tentar listar os livros')
+        this.setState({
+          message: {
+            open: true,
+            text: 'Erro na comunicação da API ao tentar listar os livros',
+            severity: 'error'
+          }
+        })
       );
 
   }
@@ -37,6 +55,14 @@ class Books extends Component {
 
     return (
       <>
+        <Toast
+          handleClose={() => this.setState({ message: { open: false } })}
+          open={this.state.message.open}
+          severity={this.state.message.severity}
+        >
+          {this.state.message.text}
+        </Toast>
+
         <Header />
         <div className="container">
           <h1>Livros</h1>

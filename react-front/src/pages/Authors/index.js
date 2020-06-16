@@ -4,14 +4,19 @@ import Header from '../../components/Header';
 
 import Table from '../../components/Table';
 import api from '../../services/api';
-import PopUp from '../../components/PopUp';
+import Toast from '../../components/Toast';
 
 class Authors extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      names: []
+      names: [],
+      message: {
+        open: false,
+        text: '',
+        severity: 'success'
+      }
     };
   }
 
@@ -19,13 +24,25 @@ class Authors extends Component {
     api.ListNames()
       .then(res => {
         if (res.message === 'success') {
-          PopUp.showMessage('success', 'Autores listados com sucesso');
-          this.setState({ names: [...this.state.names, ...res.data] })
+          this.setState({ names: [...this.state.names, ...res.data] });
+          this.setState({
+            message: {
+              open: true,
+              text: 'Autores listados com sucesso',
+              severity: 'success'
+            }
+          });
         }
       })
       .catch(err =>
-        PopUp.showMessage('error', 'Erro na comunicação da API ao tentar listar os autores')
-      )
+        this.setState({
+          message: {
+            open: true,
+            text: 'Erro na comunicação da API ao tentar listar os autores',
+            severity: 'error'
+          }
+        })
+      );
   }
 
   render() {
@@ -36,6 +53,14 @@ class Authors extends Component {
 
     return (
       <>
+        <Toast
+          handleClose={() => this.setState({ message: { open: false } })}
+          open={this.state.message.open}
+          severity={this.state.message.severity}
+        >
+          {this.state.message.text}
+        </Toast>
+
         <Header />
         <div className="container">
           <h1>Autores</h1>
