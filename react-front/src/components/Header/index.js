@@ -1,23 +1,48 @@
-import React, { Component } from 'react';
+import React from 'react';
+import {
+  AppBar,
+  Button,
+  ButtonGroup,
+  Typography
+} from '@material-ui/core';
+
 import LinkWrapper from '../../utils/LinkWrapper';
 
-class Header extends Component {
+const headerStyle = {
+  display: 'flex',
+  flexDirection: 'row',
+  justifyContent: 'space-between',
+  padding: '7px 25px'
+}
 
-  render() {
+const linkStyle = {
+  textDecoration: 'none',
+  color: 'white'
+}
 
-    return (
-      <nav>
-        <div className="nav-wrapper indigo lighten-2">
-          <LinkWrapper to="/" className="brand-logo" activeStyle={{}}>Casa do código</LinkWrapper>
-          <ul className="right">
-            <li><LinkWrapper to="/authors">Autores</LinkWrapper></li>
-            <li><LinkWrapper to="/books">Livros</LinkWrapper></li>
-            <li><LinkWrapper to="/about">Sobre</LinkWrapper></li>
-          </ul>
-        </div>
-      </nav>
-    );
-  }
+const Header = () => {
+
+  return (
+    <nav>
+      <AppBar style={headerStyle} position="static" color="primary" >
+        <LinkWrapper style={linkStyle} to="/" className="brand-logo" activeStyle={{}}>
+          <Typography variant="h4">Casa do código</Typography>
+        </LinkWrapper>
+        <ButtonGroup variant="contained" color="primary" aria-label="contained primary button group">
+          <Button variant="contained" color="primary">
+            <LinkWrapper style={linkStyle} to="/authors">Autores</LinkWrapper>
+          </Button>
+          <Button variant="contained" color="primary">
+            <LinkWrapper style={linkStyle} to="/books">Livros</LinkWrapper>
+          </Button>
+          <Button variant="contained" color="primary">
+            <LinkWrapper style={linkStyle} to="/about">Sobre</LinkWrapper>
+          </Button>
+        </ButtonGroup>
+      </AppBar>
+    </nav>
+  );
+
 }
 
 export default Header;

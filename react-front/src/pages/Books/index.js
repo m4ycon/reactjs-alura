@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Container } from '@material-ui/core';
 
 import Header from '../../components/Header';
 
@@ -64,13 +65,13 @@ class Books extends Component {
         </Toast>
 
         <Header />
-        <div className="container">
+        <Container maxWidth="sm">
           <h1>Livros</h1>
           <Table
             titles={titles}
             data={this.state.books}
           />
-        </div>
+        </Container>
       </>
     );
   }

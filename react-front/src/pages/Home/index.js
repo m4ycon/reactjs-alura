@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Container } from '@material-ui/core';
 
 import Form from '../../components/Form';
 import Header from '../../components/Header';
@@ -124,7 +125,7 @@ class Home extends Component {
 
         <Header />
 
-        <div className="container">
+        <Container maxWidth="sm">
           <h1>Casa do Código</h1>
           <Form addAuthor={this.addAuthor} />
           <Table
@@ -132,7 +133,7 @@ class Home extends Component {
             data={data}
             cellDelete={this.removeAuthor}
           />
-        </div>
+        </Container>
       </>
     );
   }

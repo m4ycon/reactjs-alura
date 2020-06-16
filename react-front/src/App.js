@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import 'materialize-css/dist/css/materialize.min.css';
 
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
