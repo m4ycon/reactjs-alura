@@ -70,7 +70,13 @@ class Home extends Component {
 
   }
 
-  addAuthor = author => {
+  addAuthor = data => {
+
+    const author = {
+      nome: data.nome,
+      livro: data.livro,
+      preco: data.preco,
+    };
 
     api.CreateAuthor(JSON.stringify(author))
       .then(res => {
