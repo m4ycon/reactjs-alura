@@ -1,32 +1,20 @@
-const url = 'http://localhost:8000';
+const baseURL = 'http://localhost:8000/api/autor/';
+
+const apiConsume = async (resource = "", method = "GET", body) =>
+  await fetch(baseURL + resource, {
+    method,
+    headers: { 'content-type': 'application/json' },
+    body
+  })
+    .then(res => ApiService.HandleErrors(res))
+    .then(res => res.json());
 
 const ApiService = {
-  ListAuthors: async () => await fetch(url + '/api/autor')
-    .then(res => ApiService.HandleErrors(res))
-    .then(res => res.json()),
-
-  ListNames: async () => await fetch(url + '/api/autor/nome')
-    .then(res => ApiService.HandleErrors(res))
-    .then(res => res.json()),
-
-  ListBooks: async () => await fetch(url + '/api/autor/livro')
-    .then(res => ApiService.HandleErrors(res))
-    .then(res => res.json()),
-
-  CreateAuthor: async author => await fetch(url + '/api/autor', {
-    method: 'POST',
-    headers: { 'content-type': 'application/json' },
-    body: author
-  })
-    .then(res => ApiService.HandleErrors(res))
-    .then(res => res.json()),
-
-  RemoveAuthor: async id => await fetch(url + `/api/autor/${id}`, {
-    method: 'DELETE',
-    headers: { 'content-type': 'application/json' }
-  })
-    .then(res => ApiService.HandleErrors(res))
-    .then(res => res.json()),
+  ListAuthors: () => apiConsume(),
+  ListNames: () => apiConsume("nome"),
+  ListBooks: () => apiConsume("livro"),
+  CreateAuthor: author => apiConsume("", "POST", author),
+  RemoveAuthor: id => apiConsume(id, "DELETE"),
 
   HandleErrors: res => {
     if (!res.ok) {
